@@ -1,0 +1,645 @@
+:root {
+  /* 전체 페이지에서 반복해서 쓸 색상을 변수로 모아 둡니다. */
+  --paper: #efe5cf;
+  --paper-deep: #d8c8a6;
+  --ink: #2c241d;
+  --muted-ink: #5f5448;
+  --line: rgba(55, 41, 28, 0.18);
+  --carnivore-main: #b64224;
+  --carnivore-soft: #f19a4c;
+  --herbivore-main: #556b2f;
+  --herbivore-soft: #9a7b4f;
+  --panel: rgba(255, 248, 234, 0.82);
+  --shadow: 0 18px 45px rgba(64, 43, 23, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.35), transparent 30%),
+    linear-gradient(180deg, #f6eedc 0%, #e8dbc1 55%, #d7c4a2 100%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.page-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0 40px;
+}
+
+.topbar {
+  position: sticky;
+  top: 16px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 24px;
+  margin-bottom: 28px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(245, 235, 215, 0.82);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+}
+
+.brand-block h1,
+.section-heading h3,
+.dino-card h4,
+.info-card h4,
+.hero-copy h2 {
+  margin: 0;
+}
+
+.brand-kicker,
+.section-tag,
+.panel-badge,
+.card-label,
+.card-era,
+.card-meta dt,
+.site-footer p {
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.brand-kicker,
+.section-tag {
+  margin: 0 0 8px;
+  font-size: 0.78rem;
+  color: var(--muted-ink);
+}
+
+.brand-block h1 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+}
+
+.topnav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 14px;
+}
+
+.topnav a {
+  padding: 8px 12px;
+  border-radius: 999px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.topnav a:hover,
+.topnav a:focus-visible {
+  background: rgba(255, 255, 255, 0.55);
+  transform: translateY(-1px);
+}
+
+.hero-section,
+.info-section,
+.comparison-section,
+.cards-section,
+.feeding-section {
+  margin-bottom: 28px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.hero-section {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 28px;
+  padding: 38px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-section::after {
+  /* 배너 뒤쪽에 은은한 장식용 원을 추가해 도감 패널 느낌을 줍니다. */
+  content: "";
+  position: absolute;
+  right: -80px;
+  bottom: -80px;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: rgba(140, 96, 44, 0.12);
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-copy h2 {
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  line-height: 1.05;
+}
+
+.hero-text {
+  max-width: 620px;
+  margin: 18px 0 0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--muted-ink);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.button-primary,
+.button-secondary,
+.filter-button {
+  border-radius: 999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.button-primary,
+.button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 20px;
+}
+
+.button-primary {
+  background: linear-gradient(135deg, var(--carnivore-main), var(--carnivore-soft));
+  color: #fff8ef;
+  box-shadow: 0 10px 25px rgba(182, 66, 36, 0.25);
+}
+
+.button-secondary {
+  background: rgba(255, 251, 243, 0.82);
+  border-color: rgba(85, 107, 47, 0.3);
+}
+
+.button-primary:hover,
+.button-primary:focus-visible,
+.button-secondary:hover,
+.button-secondary:focus-visible,
+.filter-button:hover,
+.filter-button:focus-visible {
+  transform: translateY(-2px);
+}
+
+.hero-panel {
+  display: grid;
+  gap: 16px;
+  align-content: center;
+}
+
+.fossil-card {
+  padding: 22px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff8ef;
+}
+
+.carnivore-panel {
+  background: linear-gradient(145deg, rgba(127, 38, 18, 0.92), rgba(223, 120, 37, 0.85));
+}
+
+.herbivore-panel {
+  background: linear-gradient(145deg, rgba(62, 96, 39, 0.9), rgba(140, 102, 47, 0.85));
+}
+
+.panel-badge {
+  display: inline-block;
+  margin-bottom: 14px;
+  font-size: 0.7rem;
+  opacity: 0.82;
+}
+
+.fossil-card strong {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+.fossil-card p {
+  margin: 0;
+  line-height: 1.7;
+}
+
+.info-section,
+.comparison-section,
+.cards-section,
+.feeding-section {
+  padding: 30px;
+}
+
+.section-heading {
+  margin-bottom: 18px;
+}
+
+.section-heading h3 {
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+}
+
+.section-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.info-card {
+  min-height: 180px;
+  padding: 22px;
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  background: rgba(255, 250, 241, 0.78);
+}
+
+.info-card h4 {
+  margin-bottom: 12px;
+  font-size: 1.25rem;
+}
+
+.info-card p {
+  margin: 0;
+  color: var(--muted-ink);
+  line-height: 1.7;
+}
+
+.carnivore-section {
+  background:
+    linear-gradient(180deg, rgba(255, 245, 240, 0.92), rgba(247, 218, 197, 0.92)),
+    var(--panel);
+}
+
+.herbivore-section {
+  background:
+    linear-gradient(180deg, rgba(245, 250, 238, 0.92), rgba(221, 217, 190, 0.92)),
+    var(--panel);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 680px;
+  background: rgba(255, 251, 243, 0.88);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+thead th {
+  background: rgba(122, 94, 58, 0.12);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.filter-button {
+  min-height: 44px;
+  padding: 0 18px;
+  border-color: var(--line);
+  background: rgba(255, 250, 241, 0.88);
+}
+
+.filter-button.active {
+  color: #fff8ef;
+  background: linear-gradient(135deg, #4b3d2e, #8c602c);
+  box-shadow: 0 10px 24px rgba(75, 61, 46, 0.2);
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.feeding-intro {
+  margin: -4px 0 22px;
+  color: var(--muted-ink);
+  line-height: 1.8;
+}
+
+.feeding-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.feeding-card {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.95fr) minmax(0, 1.05fr);
+  gap: 18px;
+  align-items: stretch;
+  padding: 18px;
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: rgba(255, 251, 243, 0.88);
+  box-shadow: 0 12px 32px rgba(90, 69, 44, 0.08);
+}
+
+.feeding-card.carnivore {
+  background:
+    linear-gradient(180deg, rgba(255, 241, 234, 0.9), rgba(255, 251, 243, 0.96)),
+    rgba(255, 251, 243, 0.88);
+}
+
+.feeding-card.herbivore {
+  background:
+    linear-gradient(180deg, rgba(241, 248, 233, 0.9), rgba(255, 251, 243, 0.96)),
+    rgba(255, 251, 243, 0.88);
+}
+
+.feeding-figure {
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid rgba(104, 78, 48, 0.16);
+  background: #eadcc0;
+}
+
+.feeding-figure img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 240px;
+  object-fit: cover;
+}
+
+.feeding-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.feeding-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.feeding-label,
+.feeding-scene {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.feeding-card.carnivore .feeding-label,
+.feeding-card.carnivore .feeding-scene {
+  background: rgba(182, 66, 36, 0.1);
+  color: #8b341e;
+}
+
+.feeding-card.herbivore .feeding-label,
+.feeding-card.herbivore .feeding-scene {
+  background: rgba(85, 107, 47, 0.12);
+  color: #425424;
+}
+
+.feeding-content h4 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+}
+
+.feeding-content p {
+  margin: 0;
+  color: var(--muted-ink);
+  line-height: 1.8;
+}
+
+.dino-card {
+  position: relative;
+  min-height: 280px;
+  padding: 24px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  color: #fff8ef;
+  overflow: hidden;
+}
+
+.dino-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -30px -40px auto;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.dino-card.carnivore.ember {
+  background: linear-gradient(155deg, #7a2418, #d06a2b);
+}
+
+.dino-card.carnivore.sunset {
+  background: linear-gradient(155deg, #943520, #ef8a3c);
+}
+
+.dino-card.carnivore.flame {
+  background: linear-gradient(155deg, #8a2d1a, #c25521, #f0a254);
+}
+
+.dino-card.herbivore.fern {
+  background: linear-gradient(155deg, #51672b, #927249);
+}
+
+.dino-card.herbivore.moss {
+  background: linear-gradient(155deg, #3e5c2a, #728c43, #a07d4f);
+}
+
+.dino-card.herbivore.earth {
+  background: linear-gradient(155deg, #5c6b34, #836438);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.card-label,
+.card-era {
+  font-size: 0.76rem;
+}
+
+.card-figure {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 1 / 1;
+  margin-bottom: 18px;
+  padding: 10px;
+  border-radius: 22px;
+  background: rgba(255, 248, 239, 0.14);
+  border: 1px solid rgba(255, 248, 239, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(255, 248, 239, 0.08);
+}
+
+.card-figure img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 16px;
+}
+
+.dino-card h4 {
+  position: relative;
+  z-index: 1;
+  font-size: 1.75rem;
+}
+
+.card-feature {
+  position: relative;
+  z-index: 1;
+  margin: 14px 0 22px;
+  line-height: 1.7;
+}
+
+.card-meta {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.card-meta div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 248, 239, 0.22);
+}
+
+.card-meta dt,
+.card-meta dd {
+  margin: 0;
+}
+
+.card-meta dd {
+  text-align: right;
+}
+
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 8px 8px;
+  color: var(--muted-ink);
+}
+
+@media (max-width: 960px) {
+  .hero-section {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    position: static;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .topnav {
+    justify-content: flex-start;
+  }
+
+  .section-grid,
+  .cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .feeding-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .page-shell {
+    width: min(100% - 20px, 100%);
+    padding-top: 16px;
+  }
+
+  .hero-section,
+  .info-section,
+  .comparison-section,
+  .cards-section,
+  .feeding-section {
+    padding: 22px;
+    border-radius: 24px;
+  }
+
+  .hero-copy h2 {
+    font-size: 2.2rem;
+  }
+
+  .section-grid,
+  .cards-grid {
+    /* 모바일에서는 카드를 1열로 보여 달라는 요구사항을 반영합니다. */
+    grid-template-columns: 1fr;
+  }
+
+  .feeding-card {
+    grid-template-columns: 1fr;
+  }
+
+  .feeding-figure img {
+    min-height: 220px;
+  }
+
+  .site-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
